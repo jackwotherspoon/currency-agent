@@ -14,19 +14,19 @@ The agent aims at laying out a foundation and showcasing the capabilities
 of A2A + ADK + MCP. It is a currency converter agent that can convert between different
 countries' currencies.
 
-### <img height="16" width="16" src="images/mcp-favicon.ico" alt="MCP Logo" /> Model Context Protocol (MCP)
+### <img height="24" width="24" src="images/mcp-favicon.ico" alt="MCP Logo" /> Model Context Protocol (MCP)
 
 > MCP is an open protocol that standardizes how applications provide context to LLMs. Think of MCP like a USB-C port for AI applications. Just as USB-C provides a standardized way to connect your devices to various peripherals and accessories, MCP provides a standardized way to connect AI models to different data sources and tools. - [Anthropic](https://modelcontextprotocol.io/introduction)
 
 The MCP server in this example exposes a tool `get_exchange_rate` that can be used to get the exchange rate between two currencies such as USD and EUR. It leverages the [Frankfurter](https://www.frankfurter.dev/) API to get the currency exchange rate. Our agent uses an MCP client to invoke this tool when needed.
 
-### <img height="16" width="16" src="images/adk-favicon.ico" alt="ADK Logo" /> Agent Development Kit (ADK)
+### <img height="24" width="24" src="images/adk-favicon.ico" alt="ADK Logo" /> Agent Development Kit (ADK)
 
 > ADK is a flexible and modular framework for developing and deploying AI agents. While optimized for Gemini and the Google ecosystem, ADK is model-agnostic, deployment-agnostic, and is built for compatibility with other frameworks. - [ADK](https://github.com/google/adk-python)
 
 ADK (v1.0.0) is used as the orchestration framework for creating our currency agent in this sample. It handles the conversation with the user and invokes our MCP tool when needed.
 
-### <img height="16" width="16" src="https://google.github.io/A2A/assets/a2a-logo-white.svg" alt="A2A Logo" /> Agent2Agent (A2A)
+### <img height="24" width="24" src="https://google.github.io/A2A/assets/a2a-logo-white.svg" alt="A2A Logo" /> Agent2Agent (A2A)
 
 > Agent2Agent (A2A) protocol addresses a critical challenge in the AI landscape: enabling gen AI agents, built on diverse frameworks by different companies running on separate servers, to communicate and collaborate effectively - as agents, not just as tools. A2A aims to provide a common language for agents, fostering a more interconnected, powerful, and innovative AI ecosystem. - [A2A](https://github.com/google/A2A)
 
