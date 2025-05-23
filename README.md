@@ -46,8 +46,8 @@ The new [A2A Python SDK](https://github.com/google/a2a-python) is used to create
 1. Clone the repository:
 
 ```bash
-$ git clone https://github.com/jackwoth/currency-agent.git
-$ cd currency-agent
+git clone https://github.com/jackwoth/currency-agent.git
+cd currency-agent
 ```
 
 2. Install [uv](https://docs.astral.sh/uv/getting-started/installation) (used to manage dependencies):
@@ -65,7 +65,6 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 > ```bash
 > pip install uv
 > ```
->
 
 3. Configure environment variables (via `.env` file):
 
