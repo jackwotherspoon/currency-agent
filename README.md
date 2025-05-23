@@ -79,7 +79,7 @@ There are two different ways to call Gemini models:
 > Existing Google Cloud users may want to use Vertex AI.
 
 <details open>
-<summary>**Gemini API Key**</summary> 
+<summary>Gemini API Key</summary> 
 
 Get an API Key from Google AI Studio: https://aistudio.google.com/apikey
 
@@ -93,7 +93,7 @@ echo "GOOGLE_API_KEY=<your_api_key_here>" >> .env \
 </details>
 
 <details>
-<summary>**Vertex AI**</summary>
+<summary>Vertex AI</summary>
 
 To use Vertex AI, you will need to [create a Google Cloud project](https://developers.google.com/workspace/guides/create-project) and [enable Vertex AI](https://cloud.google.com/vertex-ai/docs/start/cloud-environment).
 
