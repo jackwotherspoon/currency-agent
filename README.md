@@ -61,10 +61,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 > [!NOTE]
-> You can also install `uv` via `pip` or `pipx` if you prefer.
-> ```bash
-> pip install uv
-> ```
+> You may need to restart or open a new terminal after installing `uv`.
 
 3. Configure environment variables (via `.env` file):
 
