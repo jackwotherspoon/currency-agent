@@ -1,0 +1,12 @@
+[project]
+name = "currency-agent"
+version = "0.1.0"
+description = "Currency conversion agent using ADK and A2A"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "a2a-sdk==0.2.3",
+    "google-adk==1.0.0",
+    "google-genai>=1.15.0",
+    "python-dotenv>=1.1.0",
+]
