@@ -46,7 +46,7 @@ The new [A2A Python SDK](https://github.com/google/a2a-python) is used to create
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/jackwoth/currency-agent.git
+git clone https://github.com/jackwotherspoon/currency-agent.git
 cd currency-agent
 ```
 
