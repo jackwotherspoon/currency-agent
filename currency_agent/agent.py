@@ -29,7 +29,7 @@ def create_agent() -> LlmAgent:
         tools=[
             MCPToolset(
                 connection_params=SseServerParams(
-                    url=os.getenv('MCP_SERVER_URL', 'http://localhost:3000/sse')
+                    url=os.getenv('MCP_SERVER_URL', 'http://localhost:9999/sse')
                 )
             )
         ],

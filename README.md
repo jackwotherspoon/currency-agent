@@ -118,7 +118,7 @@ Now you are ready for the fun to begin!
 
 ### MCP Server
 
-In a terminal, start the MCP Server (it starts on port 3000):
+In a terminal, start the MCP Server (it starts on port 9999):
 
 ```bash
 uv run mcp-server/server.py

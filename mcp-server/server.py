@@ -5,7 +5,7 @@ from mcp.server.fastmcp import FastMCP
 
 logger = logging.getLogger(__name__)
 
-mcp = FastMCP("Currency", port=3000)
+mcp = FastMCP("Currency", port=9999)
 
 @mcp.tool()
 def get_exchange_rate(
