@@ -34,3 +34,5 @@ def create_agent() -> LlmAgent:
             )
         ],
     )
+
+root_agent = create_agent()
