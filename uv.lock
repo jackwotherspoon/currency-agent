@@ -9,7 +9,7 @@ resolution-markers = [
 
 [[package]]
 name = "a2a-sdk"
-version = "0.2.4"
+version = "0.2.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "httpx" },
@@ -19,11 +19,10 @@ dependencies = [
     { name = "pydantic" },
     { name = "sse-starlette" },
     { name = "starlette" },
-    { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ce/1b/3dcb46255e12801f9d694e3de7c6a0249748febbc3b134e9d3b64653dac7/a2a_sdk-0.2.4.tar.gz", hash = "sha256:d914a463b7946eed0a69261963b73b0785f02f786678015649898c081a9c90f5", size = 127721, upload-time = "2025-05-22T15:32:28.779Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/61/c4/4fbb805dbabbef1035abdd7fac6d8514ed92e6916304a74c1ea429c9ef79/a2a_sdk-0.2.5.tar.gz", hash = "sha256:d2bc0842ef9dda8bb127b1d07e0b4e3678127cb517cf1e9d46cbc40de944c2ac", size = 181587, upload-time = "2025-05-27T21:58:08.243Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/bd/5a/de8353f005c524f90ca56d9a634018e75ce3de273a6ed3c7e06758082bdc/a2a_sdk-0.2.4-py3-none-any.whl", hash = "sha256:0fdd8dcc98780f5a8adbd42f4d9bce5ade849bbba992e985ecf9ef317ecf01d8", size = 59592, upload-time = "2025-05-22T15:32:27.402Z" },
+    { url = "https://files.pythonhosted.org/packages/25/d7/c8623ac2d6a78ad95030357051a06a4d400ca650bf256a1151b52149b238/a2a_sdk-0.2.5-py3-none-any.whl", hash = "sha256:00962245941937964074ae9dfa3aad05f2e156a20501d6bfaadb9cce096279c5", size = 62089, upload-time = "2025-05-27T21:58:06.856Z" },
 ]
 
 [[package]]
@@ -280,9 +279,9 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "a2a-sdk", specifier = "==0.2.4" },
-    { name = "fastmcp", specifier = ">=2.5.1" },
-    { name = "google-adk", specifier = "==1.0.0" },
+    { name = "a2a-sdk", specifier = "==0.2.5" },
+    { name = "fastmcp", specifier = ">=2.5.2" },
+    { name = "google-adk", specifier = "==1.1.1" },
     { name = "google-genai", specifier = ">=1.15.0" },
     { name = "python-dotenv", specifier = ">=1.1.0" },
 ]
@@ -336,9 +335,10 @@ wheels = [
 
 [[package]]
 name = "fastmcp"
-version = "2.5.1"
+version = "2.6.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
+    { name = "authlib" },
     { name = "exceptiongroup" },
     { name = "httpx" },
     { name = "mcp" },
@@ -348,14 +348,14 @@ dependencies = [
     { name = "typer" },
     { name = "websockets" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/5d/cc/37ff3a96338234a697df31d2c70b50a1d0f5e20f045d9b7cbba052be36af/fastmcp-2.5.1.tar.gz", hash = "sha256:0d10ec65a362ae4f78bdf3b639faf35b36cc0a1c8f5461a54fac906fe821b84d", size = 1035613, upload-time = "2025-05-24T11:48:27.873Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ad/d2/5bd3cf09b63e51c3e10ece07a1031cfe362cf080bb0155e6b894414301b5/fastmcp-2.6.1.tar.gz", hash = "sha256:212f15a4edf8289e5c3c70796910dc612ef891f84df3257a277457bb761d1362", size = 1585121, upload-time = "2025-06-03T13:31:14.354Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/df/4f/e7ec7b63eadcd5b10978dbc472fc3c36de3fc8c91f60ad7642192ed78836/fastmcp-2.5.1-py3-none-any.whl", hash = "sha256:a6fe50693954a6aed89fc6e43f227dcd66e112e3d3a1d633ee22b4f435ee8aed", size = 105789, upload-time = "2025-05-24T11:48:26.371Z" },
+    { url = "https://files.pythonhosted.org/packages/d7/33/b452a453f62e9b7f6b3f0f263dffb2fa155bc1cab3c69902f7d32b11d9d1/fastmcp-2.6.1-py3-none-any.whl", hash = "sha256:d83a2fcffa721cbb91b29c738d39de20b54e1b1ebef5be652d6a4956ecac7ad3", size = 125910, upload-time = "2025-06-03T13:31:12.315Z" },
 ]
 
 [[package]]
 name = "google-adk"
-version = "1.0.0"
+version = "1.1.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "authlib" },
@@ -379,9 +379,9 @@ dependencies = [
     { name = "tzlocal" },
     { name = "uvicorn" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/29/58/d04adcbd6c3c9feda372a79ebb7d4e1f8dc02fa2c5788420e84956851a58/google_adk-1.0.0.tar.gz", hash = "sha256:9a9efadd93c86031ebae44646f01abc347a3ed28079e94989d54c0cb77e68872", size = 1085619, upload-time = "2025-05-20T17:44:41.231Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/0f/38/a67f59a3ecf9630d93007848ec3f41beec4415014e3fd1fa8f159c7e85fc/google_adk-1.1.1.tar.gz", hash = "sha256:9418675574d2e9fd8a3c8e423186b86fe4ad3f211dd5da400cf24f1ef39fe2d7", size = 1094600, upload-time = "2025-05-29T00:13:31.572Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/11/66/8cf150b753bc3314d0581eee214291a55ffe89ce7d9b555cbf0ce84256b4/google_adk-1.0.0-py3-none-any.whl", hash = "sha256:b9409c87cf01cbeb6de31a7b2892556501ddb075642139d1b9762c7c714ef1d4", size = 1229825, upload-time = "2025-05-20T17:44:39.367Z" },
+    { url = "https://files.pythonhosted.org/packages/53/1d/cefb793fed19159e8a1975cb1767288b848b9c14020f70c1f0c8048a706c/google_adk-1.1.1-py3-none-any.whl", hash = "sha256:c6cdca1b9cab7126efa4984abaff2d7b26da7945da9e6b0e2e6ea1727fb3f966", size = 1235870, upload-time = "2025-05-29T00:13:29.563Z" },
 ]
 
 [[package]]
@@ -895,7 +895,7 @@ wheels = [
 
 [[package]]
 name = "mcp"
-version = "1.9.1"
+version = "1.9.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anyio" },
@@ -908,9 +908,9 @@ dependencies = [
     { name = "starlette" },
     { name = "uvicorn", marker = "sys_platform != 'emscripten'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e7/bc/54aec2c334698cc575ca3b3481eed627125fb66544152fa1af927b1a495c/mcp-1.9.1.tar.gz", hash = "sha256:19879cd6dde3d763297617242888c2f695a95dfa854386a6a68676a646ce75e4", size = 316247, upload-time = "2025-05-22T15:52:21.26Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ea/03/77c49cce3ace96e6787af624611b627b2828f0dca0f8df6f330a10eea51e/mcp-1.9.2.tar.gz", hash = "sha256:3c7651c053d635fd235990a12e84509fe32780cd359a5bbef352e20d4d963c05", size = 333066, upload-time = "2025-05-29T14:42:17.76Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a6/c0/4ac795585a22a0a2d09cd2b1187b0252d2afcdebd01e10a68bbac4d34890/mcp-1.9.1-py3-none-any.whl", hash = "sha256:2900ded8ffafc3c8a7bfcfe8bc5204037e988e753ec398f371663e6a06ecd9a9", size = 130261, upload-time = "2025-05-22T15:52:19.702Z" },
+    { url = "https://files.pythonhosted.org/packages/5d/a6/8f5ee9da9f67c0fd8933f63d6105f02eabdac8a8c0926728368ffbb6744d/mcp-1.9.2-py3-none-any.whl", hash = "sha256:bc29f7fd67d157fef378f89a4210384f5fecf1168d0feb12d22929818723f978", size = 131083, upload-time = "2025-05-29T14:42:16.211Z" },
 ]
 
 [[package]]

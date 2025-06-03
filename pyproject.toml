@@ -5,9 +5,9 @@ description = "Currency conversion agent using ADK, MCP and A2A"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "a2a-sdk==0.2.4",
-    "fastmcp>=2.5.1",
-    "google-adk==1.0.0",
+    "a2a-sdk==0.2.5",
+    "fastmcp>=2.5.2",
+    "google-adk==1.1.1",
     "google-genai>=1.15.0",
     "python-dotenv>=1.1.0",
 ]

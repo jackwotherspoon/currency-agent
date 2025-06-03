@@ -1,11 +1,12 @@
 import logging
+import os
 
 import httpx
 from fastmcp import FastMCP
 
 logger = logging.getLogger(__name__)
 
-mcp = FastMCP("Currency", port=9999)
+mcp = FastMCP("Currency MCP Server 💵")
 
 @mcp.tool()
 def get_exchange_rate(
@@ -23,7 +24,7 @@ def get_exchange_rate(
     Returns:
         A dictionary containing the exchange rate data, or an error message if the request fails.
     """
-    logger.info(f"--- 🛠️🪛🪚 Tool: get_exchange_rate called for converting {currency_from} to {currency_to} ---")
+    logger.info(f"--- 🛠️ Tool: get_exchange_rate called for converting {currency_from} to {currency_to} ---")
     try:
         response = httpx.get(
             f'https://api.frankfurter.app/{currency_date}',
@@ -33,16 +34,18 @@ def get_exchange_rate(
 
         data = response.json()
         if 'rates' not in data:
-            logger.error(f'rates not found in response: {data}')
+            logger.error(f'❌ rates not found in response: {data}')
             return {'error': 'Invalid API response format.'}
-        logger.info(f'API response: {data}')
+        logger.info(f'✅ API response: {data}')
         return data
     except httpx.HTTPError as e:
-        logger.error(f'API request failed: {e}')
+        logger.error(f'❌ API request failed: {e}')
         return {'error': f'API request failed: {e}'}
     except ValueError:
-        logger.error('Invalid JSON response from API')
+        logger.error('❌ Invalid JSON response from API')
         return {'error': 'Invalid JSON response from API.'}
 
-if __name__ == "__main__":  
-    mcp.run(transport="sse")
+if __name__ == "__main__":
+    logger.info(f"🚀 MCP server started on port {os.getenv('PORT', 8080)}")
+    # Could also use 'streamable-http' transport, host="0.0.0.0" required for Cloud Run.
+    mcp.run(transport="sse", host="0.0.0.0", port=os.getenv("PORT", 8080))
