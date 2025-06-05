@@ -1,3 +1,4 @@
+import asyncio
 import logging
 import os
 
@@ -5,6 +6,7 @@ import httpx
 from fastmcp import FastMCP
 
 logger = logging.getLogger(__name__)
+logging.basicConfig(format="[%(levelname)s]: %(message)s", level=logging.INFO)
 
 mcp = FastMCP("Currency MCP Server 💵")
 
@@ -47,5 +49,11 @@ def get_exchange_rate(
 
 if __name__ == "__main__":
     logger.info(f"🚀 MCP server started on port {os.getenv('PORT', 8080)}")
-    # Could also use 'streamable-http' transport, host="0.0.0.0" required for Cloud Run.
-    mcp.run(transport="sse", host="0.0.0.0", port=os.getenv("PORT", 8080))
+    # Could also use 'sse' transport, host="0.0.0.0" required for Cloud Run.
+    asyncio.run(
+        mcp.run_async(
+            transport="streamable-http",
+            host="0.0.0.0", 
+            port=os.getenv("PORT", 8080),
+        )
+    )

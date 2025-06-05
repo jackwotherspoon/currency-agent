@@ -5,7 +5,7 @@ import click
 from dotenv import load_dotenv
 import uvicorn
 
-from agent import create_agent
+from agent import root_agent
 from agent_executor import ADKAgentExecutor
 
 from google.adk.artifacts import InMemoryArtifactService
@@ -43,7 +43,7 @@ def main(host: str, port: int):
 
     # A2A Agent Skill definition
     skill = AgentSkill(
-        id='convert_currency',
+        id='get_exchange_rate',
         name='Currency Exchange Rates Tool',
         description='Helps with exchange values between various currencies',
         tags=['currency conversion', 'currency exchange'],
@@ -62,11 +62,10 @@ def main(host: str, port: int):
         skills=[skill],
     )
 
-    # Create the ADK agent, runner, and executor.
-    adk_agent = create_agent()
+    # Create the ADK runner and executor.
     runner = Runner(
         app_name=agent_card.name,
-        agent=adk_agent,
+        agent=root_agent,
         artifact_service=InMemoryArtifactService(),
         session_service=InMemorySessionService(),
         memory_service=InMemoryMemoryService(),

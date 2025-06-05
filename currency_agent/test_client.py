@@ -1,8 +1,9 @@
 import os
-
-from a2a.client import A2AClient
+import traceback
 from typing import Any
 from uuid import uuid4
+
+from a2a.client import A2AClient
 from a2a.types import (
     SendMessageResponse,
     GetTaskResponse,
@@ -16,7 +17,6 @@ from a2a.types import (
     SendStreamingMessageRequest,
 )
 import httpx
-import traceback
 
 AGENT_URL = os.getenv('AGENT_URL', 'http://localhost:10000')
 
