@@ -3,8 +3,7 @@ import os
 
 from dotenv import load_dotenv
 from google.adk.agents import LlmAgent
-from google.adk.tools.mcp_tool import MCPToolset
-from google.adk.tools.mcp_tool.mcp_session_manager import StreamableHTTPServerParams
+from google.adk.tools.mcp_tool import MCPToolset, StreamableHTTPConnectionParams
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(format="[%(levelname)s]: %(message)s", level=logging.INFO)
@@ -30,7 +29,7 @@ def create_agent() -> LlmAgent:
         instruction=SYSTEM_INSTRUCTION,
         tools=[
             MCPToolset(
-                connection_params=StreamableHTTPServerParams(
+                connection_params=StreamableHTTPConnectionParams(
                     url=os.getenv('MCP_SERVER_URL', 'http://localhost:8080/mcp')
                 )
             )
