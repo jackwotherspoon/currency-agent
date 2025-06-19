@@ -29,8 +29,8 @@ load_dotenv()
 
 
 @click.command()
-@click.option('--host', 'host', default='localhost')
-@click.option('--port', 'port', default=10000)
+@click.option("--host", "host", default="localhost")
+@click.option("--port", "port", default=10000)
 def main(host: str, port: int):
     # Verify one of Google AI Studio or Vertex AI is being used
     if os.getenv("GOOGLE_GENAI_USE_VERTEXAI") != "TRUE" and not os.getenv(
@@ -43,19 +43,19 @@ def main(host: str, port: int):
 
     # A2A Agent Skill definition
     skill = AgentSkill(
-        id='get_exchange_rate',
-        name='Currency Exchange Rates Tool',
-        description='Helps with exchange values between various currencies',
-        tags=['currency conversion', 'currency exchange'],
-        examples=['What is exchange rate between USD and GBP?'],
+        id="get_exchange_rate",
+        name="Currency Exchange Rates Tool",
+        description="Helps with exchange values between various currencies",
+        tags=["currency conversion", "currency exchange"],
+        examples=["What is exchange rate between USD and GBP?"],
     )
 
     # A2A Agent Card definition
     agent_card = AgentCard(
-        name='Currency Agent',
-        description='Helps with exchange rates for currencies',
-        url=f'http://{host}:{port}/',
-        version='1.0.0',
+        name="Currency Agent",
+        description="Helps with exchange rates for currencies",
+        url=f"http://{host}:{port}/",
+        version="1.0.0",
         defaultInputModes=["text"],
         defaultOutputModes=["text"],
         capabilities=AgentCapabilities(streaming=True),
@@ -84,5 +84,5 @@ def main(host: str, port: int):
     uvicorn.run(server.build(), host=host, port=port)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

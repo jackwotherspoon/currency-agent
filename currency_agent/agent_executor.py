@@ -23,6 +23,7 @@ from a2a.utils.errors import ServerError
 
 logger = logging.getLogger(__name__)
 
+
 class ADKAgentExecutor(AgentExecutor):
     """An AgentExecutor that runs an ADK agent."""
 
@@ -52,23 +53,22 @@ class ADKAgentExecutor(AgentExecutor):
         async for event in self._run_agent(session_id, new_message):
             if event.is_final_response():
                 parts = convert_genai_parts_to_a2a(event.content.parts)
-                logger.debug('✅ Yielding final response: %s', parts)
-                task_updater.add_artifact(parts)
-                task_updater.complete()
+                logger.debug("✅ Yielding final response: %s", parts)
+                await task_updater.add_artifact(parts)
+                await task_updater.complete()
                 break
             # If the agent is not making a function call, yield an update.
             if not event.get_function_calls():
-                logger.debug('⏳ Yielding update response')
-                task_updater.update_status(
+                logger.debug("⏳ Yielding update response")
+                await task_updater.update_status(
                     TaskState.working,
                     message=task_updater.new_agent_message(
                         convert_genai_parts_to_a2a(event.content.parts),
                     ),
                 )
             else:
-                logger.debug('➡️ Skipping event')
+                logger.debug("➡️ Skipping event")
 
-    
     async def execute(
         self,
         context: RequestContext,
@@ -87,20 +87,19 @@ class ADKAgentExecutor(AgentExecutor):
             context.context_id,
             updater,
         )
-        logger.debug('--- 💵💱💶 [Currency] execute exiting ---')
+        logger.debug("--- 💵💱💶 [Currency] execute exiting ---")
 
     async def cancel(self, context: RequestContext, event_queue: EventQueue):
         """Cancel the task."""
         # Ideally: kill any ongoing tasks.
         raise ServerError(error=UnsupportedOperationError())
 
-
     async def _upsert_session(self, session_id: str):
         """Upsert a session."""
         return await self.runner.session_service.get_session(
-            app_name=self.runner.app_name, user_id='self', session_id=session_id
+            app_name=self.runner.app_name, user_id="self", session_id=session_id
         ) or await self.runner.session_service.create_session(
-            app_name=self.runner.app_name, user_id='self', session_id=session_id
+            app_name=self.runner.app_name, user_id="self", session_id=session_id
         )
 
 
@@ -127,8 +126,8 @@ def convert_a2a_part_to_genai(part: Part) -> types.Part:
                     data=part.file.bytes, mime_type=part.file.mime_type
                 )
             )
-        raise ValueError(f'Unsupported file type: {type(part.file)}')
-    raise ValueError(f'Unsupported part type: {type(part)}')
+        raise ValueError(f"Unsupported file type: {type(part.file)}")
+    raise ValueError(f"Unsupported part type: {type(part)}")
 
 
 def convert_genai_parts_to_a2a(parts: list[types.Part]) -> list[Part]:
@@ -160,4 +159,4 @@ def convert_genai_part_to_a2a(part: types.Part) -> Part:
                 )
             )
         )
-    raise ValueError(f'Unsupported part type: {part}')
+    raise ValueError(f"Unsupported part type: {part}")

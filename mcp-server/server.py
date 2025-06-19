@@ -10,11 +10,12 @@ logging.basicConfig(format="[%(levelname)s]: %(message)s", level=logging.INFO)
 
 mcp = FastMCP("Currency MCP Server 💵")
 
+
 @mcp.tool()
 def get_exchange_rate(
-    currency_from: str = 'USD',
-    currency_to: str = 'EUR',
-    currency_date: str = 'latest',
+    currency_from: str = "USD",
+    currency_to: str = "EUR",
+    currency_date: str = "latest",
 ):
     """Use this to get current exchange rate.
 
@@ -26,26 +27,29 @@ def get_exchange_rate(
     Returns:
         A dictionary containing the exchange rate data, or an error message if the request fails.
     """
-    logger.info(f"--- 🛠️ Tool: get_exchange_rate called for converting {currency_from} to {currency_to} ---")
+    logger.info(
+        f"--- 🛠️ Tool: get_exchange_rate called for converting {currency_from} to {currency_to} ---"
+    )
     try:
         response = httpx.get(
-            f'https://api.frankfurter.app/{currency_date}',
-            params={'from': currency_from, 'to': currency_to},
+            f"https://api.frankfurter.app/{currency_date}",
+            params={"from": currency_from, "to": currency_to},
         )
         response.raise_for_status()
 
         data = response.json()
-        if 'rates' not in data:
-            logger.error(f'❌ rates not found in response: {data}')
-            return {'error': 'Invalid API response format.'}
-        logger.info(f'✅ API response: {data}')
+        if "rates" not in data:
+            logger.error(f"❌ rates not found in response: {data}")
+            return {"error": "Invalid API response format."}
+        logger.info(f"✅ API response: {data}")
         return data
     except httpx.HTTPError as e:
-        logger.error(f'❌ API request failed: {e}')
-        return {'error': f'API request failed: {e}'}
+        logger.error(f"❌ API request failed: {e}")
+        return {"error": f"API request failed: {e}"}
     except ValueError:
-        logger.error('❌ Invalid JSON response from API')
-        return {'error': 'Invalid JSON response from API.'}
+        logger.error("❌ Invalid JSON response from API")
+        return {"error": "Invalid JSON response from API."}
+
 
 if __name__ == "__main__":
     logger.info(f"🚀 MCP server started on port {os.getenv('PORT', 8080)}")
