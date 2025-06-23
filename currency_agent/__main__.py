@@ -13,7 +13,7 @@ from google.adk.memory import InMemoryMemoryService
 from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService
 
-from a2a.server.apps import A2AStarletteApplication
+from a2a.server.apps import A2AFastAPIApplication
 from a2a.server.request_handlers import DefaultRequestHandler
 from a2a.server.tasks import InMemoryTaskStore
 from a2a.types import (
@@ -77,7 +77,7 @@ def main(host: str, port: int):
         task_store=InMemoryTaskStore(),
     )
 
-    server = A2AStarletteApplication(
+    server = A2AFastAPIApplication(
         agent_card=agent_card, http_handler=request_handler
     )
 
