@@ -81,10 +81,10 @@ async def run_single_turn_test(client: A2AClient) -> None:
 async def run_streaming_test(client: A2AClient) -> None:
     """Runs a single-turn streaming test."""
 
-    send_payload = create_send_message_payload(text="how much is 50 EUR in JPY?")
+    send_message_payload = create_send_message_payload(text="how much is 50 EUR in JPY?")
 
     request = SendStreamingMessageRequest(
-        id=str(uuid4()), params=MessageSendParams(**send_payload)
+        id=str(uuid4()), params=MessageSendParams(**send_message_payload)
     )
 
     print("--- ⏩ Single Turn Streaming Request ---")
