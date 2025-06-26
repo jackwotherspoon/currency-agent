@@ -78,8 +78,8 @@ class ADKAgentExecutor(AgentExecutor):
         updater = TaskUpdater(event_queue, context.task_id, context.context_id)
         # Immediately notify that the task is submitted.
         if not context.current_task:
-            updater.submit()
-        updater.start_work()
+            await updater.submit()
+        await updater.start_work()
         await self._process_request(
             types.UserContent(
                 parts=convert_a2a_parts_to_genai(context.message.parts),
