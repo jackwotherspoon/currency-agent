@@ -32,7 +32,7 @@ The MCP server in this example exposes a tool `get_exchange_rate` that can be us
 
 ADK (v1.0.0) is used as the orchestration framework for creating our currency agent in this sample. It handles the conversation with the user and invokes our MCP tool when needed.
 
-### <img height="20" width="20" src="https://google-a2a.github.io/A2A/assets/a2a-logo-white.svg" alt="A2A Logo" /> Agent2Agent (A2A)
+### <img height="20" width="20" src="https://a2aproject.github.io/A2A/v0.2.5/assets/a2a-logo-white.svg" alt="A2A Logo" /> Agent2Agent (A2A)
 
 > Agent2Agent (A2A) protocol addresses a critical challenge in the AI landscape: enabling gen AI agents, built on diverse frameworks by different companies running on separate servers, to communicate and collaborate effectively - as agents, not just as tools. A2A aims to provide a common language for agents, fostering a more interconnected, powerful, and innovative AI ecosystem. - [A2A](https://github.com/a2aproject/A2A)
 
