@@ -3,7 +3,7 @@ import traceback
 from typing import Any
 from uuid import uuid4
 
-from a2a.client import A2AClient
+from a2a.client import A2ACardResolver, A2AClient
 from a2a.types import (
     SendMessageResponse,
     GetTaskResponse,
@@ -110,7 +110,7 @@ async def run_multi_turn_test(client: A2AClient) -> None:
         first_turn_response.root.result, Task
     ):
         task: Task = first_turn_response.root.result
-        context_id = task.contextId  # Capture context ID
+        context_id = task.context_id  # Capture context ID
 
         # --- Second Turn (if input required) ---
         if task.status.state == TaskState.input_required and context_id:
@@ -140,8 +140,16 @@ async def main() -> None:
     print(f"--- 🔄 Connecting to agent at {AGENT_URL}... ---")
     try:
         async with httpx.AsyncClient() as httpx_client:
-            client = await A2AClient.get_client_from_agent_card_url(
-                httpx_client, AGENT_URL
+            # Create a resolver to fetch the agent card
+            resolver = A2ACardResolver(
+                httpx_client=httpx_client,
+                base_url=AGENT_URL,
+            )
+            agent_card = await resolver.get_agent_card()
+            # Create a client to interact with the agent
+            client = A2AClient(
+                httpx_client=httpx_client,
+                agent_card=agent_card,
             )
             print("--- ✅ Connection successful. ---")
 

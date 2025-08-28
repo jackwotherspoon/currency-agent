@@ -16,7 +16,7 @@ async def test_server():
         result = await client.call_tool(
             "get_exchange_rate", {"currency_from": "USD", "currency_to": "EUR"}
         )
-        print(f"--- ✅  Success: {result[0].text} ---")
+        print(f"--- ✅  Success: {result.content[0].text} ---")
 
 
 if __name__ == "__main__":
