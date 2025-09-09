@@ -133,7 +133,7 @@ uv run mcp-server/server.py
 In a separate terminal, start the A2A Server (it starts on port 10000):
 
 ```bash
-uv run currency_agent
+uv run uvicorn currency_agent.agent:a2a_app --host localhost --port 10000
 ```
 
 ### A2A Client

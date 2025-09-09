@@ -14,7 +14,6 @@ from a2a.types import (
     MessageSendParams,
     GetTaskRequest,
     TaskQueryParams,
-    SendStreamingMessageRequest,
 )
 import httpx
 
@@ -78,21 +77,6 @@ async def run_single_turn_test(client: A2AClient) -> None:
     print_json_response(get_response, "📥 Query Task Response")
 
 
-async def run_streaming_test(client: A2AClient) -> None:
-    """Runs a single-turn streaming test."""
-
-    send_message_payload = create_send_message_payload(text="how much is 50 EUR in JPY?")
-
-    request = SendStreamingMessageRequest(
-        id=str(uuid4()), params=MessageSendParams(**send_message_payload)
-    )
-
-    print("--- ⏩ Single Turn Streaming Request ---")
-    stream_response = client.send_message_streaming(request)
-    async for chunk in stream_response:
-        print_json_response(chunk, "⏳ Streaming Chunk")
-
-
 async def run_multi_turn_test(client: A2AClient) -> None:
     """Runs a multi-turn non-streaming test."""
     print("--- 📝 Multi-Turn Request ---")
@@ -154,7 +138,6 @@ async def main() -> None:
             print("--- ✅ Connection successful. ---")
 
             await run_single_turn_test(client)
-            await run_streaming_test(client)
             await run_multi_turn_test(client)
 
     except Exception as e:

@@ -3,6 +3,7 @@ import os
 
 from dotenv import load_dotenv
 from google.adk.agents import LlmAgent
+from google.adk.a2a.utils.agent_to_a2a import to_a2a
 from google.adk.tools.mcp_tool import MCPToolset, StreamableHTTPConnectionParams
 
 logger = logging.getLogger(__name__)
@@ -18,24 +19,22 @@ SYSTEM_INSTRUCTION = (
     "Do not attempt to answer unrelated questions or use tools for other purposes."
 )
 
+logger.info("--- 🔧 Loading MCP tools from MCP Server... ---")
+logger.info("--- 🤖 Creating ADK Currency Agent... ---")
 
-def create_agent() -> LlmAgent:
-    """Constructs the ADK currency conversion agent."""
-    logger.info("--- 🔧 Loading MCP tools from MCP Server... ---")
-    logger.info("--- 🤖 Creating ADK Currency Agent... ---")
-    return LlmAgent(
-        model="gemini-2.5-flash",
-        name="currency_agent",
-        description="An agent that can help with currency conversions",
-        instruction=SYSTEM_INSTRUCTION,
-        tools=[
-            MCPToolset(
-                connection_params=StreamableHTTPConnectionParams(
-                    url=os.getenv("MCP_SERVER_URL", "http://localhost:8080/mcp")
-                )
+root_agent = LlmAgent(
+    model="gemini-2.5-flash",
+    name="currency_agent",
+    description="An agent that can help with currency conversions",
+    instruction=SYSTEM_INSTRUCTION,
+    tools=[
+        MCPToolset(
+            connection_params=StreamableHTTPConnectionParams(
+                url=os.getenv("MCP_SERVER_URL", "http://localhost:8080/mcp")
             )
-        ],
-    )
+        )
+    ],
+)
 
-
-root_agent = create_agent()
+# Make the agent A2A-compatible
+a2a_app = to_a2a(root_agent, port=10000)
