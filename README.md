@@ -72,12 +72,12 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 There are two different ways to call Gemini models:
 
 - Calling the Gemini API directly using an API key created via Google AI Studio.
-- Calling Gemini models through Vertex AI APIs on Google Cloud.
+- Calling Gemini models through Gemini Enterprise Agent Platform APIs on Google Cloud.
 
 > [!TIP] 
 > An API key from Google AI Studio is the quickest way to get started.
 > 
-> Existing Google Cloud users may want to use Vertex AI.
+> Existing Google Cloud users may want to use Gemini Enterprise Agent Platform.
 
 <details open>
 <summary>Gemini API Key</summary> 
@@ -88,17 +88,17 @@ Create a `.env` file by running the following (replace `<your_api_key_here>` wit
 
 ```sh
 echo "GOOGLE_API_KEY=<your_api_key_here>" >> .env \
-&& echo "GOOGLE_GENAI_USE_VERTEXAI=FALSE" >> .env
+&& echo "GOOGLE_GENAI_USE_ENTERPRISE=FALSE" >> .env
 ```
 
 </details>
 
 <details>
-<summary>Vertex AI</summary>
+<summary>Gemini Enterprise Agent Platform</summary>
 
-To use Vertex AI, you will need to [create a Google Cloud project](https://developers.google.com/workspace/guides/create-project) and [enable Vertex AI](https://cloud.google.com/vertex-ai/docs/start/cloud-environment).
+To use Gemini Enterprise Agent Platform, you will need to [create a Google Cloud project](https://developers.google.com/workspace/guides/create-project) and [enable it](https://docs.cloud.google.com/gemini-enterprise-agent-platform/machine-learning/start/cloud-environment).
 
-Authenticate and enable Vertex AI API:
+Authenticate and enable Gemini Enterprise Agent Platform API:
 
 ```bash
 gcloud auth login
@@ -109,9 +109,9 @@ gcloud services enable aiplatform.googleapis.com
 
 Create a `.env` file by running the following (replace `<your_project_id>` with your project ID):
 ```sh
-echo "GOOGLE_GENAI_USE_VERTEXAI=TRUE" >> .env \
+echo "GOOGLE_GENAI_USE_ENTERPRISE=TRUE" >> .env \
 && echo "GOOGLE_CLOUD_PROJECT=<your_project_id>" >> .env \
-&& echo "GOOGLE_CLOUD_LOCATION=us-central1" >> .env
+&& echo "GOOGLE_CLOUD_LOCATION=global" >> .env
 ```
 
 </details>
@@ -122,7 +122,7 @@ Now you are ready for the fun to begin!
 
 ### MCP Server
 
-In a terminal, start the MCP Server (it starts on port 8080):
+In a terminal, start the MCP Server on port 8080:
 
 ```bash
 uv run mcp-server/server.py
@@ -130,7 +130,7 @@ uv run mcp-server/server.py
 
 ### A2A Server
 
-In a separate terminal, start the A2A Server (it starts on port 10000):
+In a separate terminal, start the A2A Server on port 10000:
 
 ```bash
 uv run uvicorn currency_agent.agent:a2a_app --host localhost --port 10000
@@ -138,10 +138,19 @@ uv run uvicorn currency_agent.agent:a2a_app --host localhost --port 10000
 
 ### A2A Client
 
-In a separate terminal, run the A2A Client to run some queries against our A2A server:
+In a separate terminal, run the A2A Client to fetch the agent card and run 
+a query against the A2A server:
 
 ```bash
-uv run currency_agent/test_client.py
+uv run currency_agent/test_a2aclient.py
+```
+
+### ADK
+
+Test the currency and travel agent using ADK UI:
+
+```bash
+uv run adk web
 ```
 
 ## 🤝 Contributing

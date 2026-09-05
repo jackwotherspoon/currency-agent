@@ -23,7 +23,7 @@ logger.info("--- 🔧 Loading MCP tools from MCP Server... ---")
 logger.info("--- 🤖 Creating ADK Currency Agent... ---")
 
 root_agent = LlmAgent(
-    model="gemini-2.5-flash",
+    model="gemini-3.7-flash",
     name="currency_agent",
     description="An agent that can help with currency conversions",
     instruction=SYSTEM_INSTRUCTION,
