@@ -11,13 +11,16 @@ from a2a.helpers import display_agent_card, new_text_message
 from a2a.types import Role, SendMessageRequest
 
 AGENT_URL = os.getenv("AGENT_URL", "http://localhost:10000")
+# httpx defaults to a 5s timeout, which a Cloud Run cold start or a slow model
+# response can easily exceed.
+TIMEOUT = httpx.Timeout(60.0, connect=10.0)
 
 
 async def get_agent_card():
     """Get the agent card."""
     print(f"🔄 Fetching the agent card at {AGENT_URL}")
 
-    async with httpx.AsyncClient() as httpx_client:
+    async with httpx.AsyncClient(timeout=TIMEOUT) as httpx_client:
         resolver = A2ACardResolver(
             httpx_client=httpx_client,
             base_url=AGENT_URL,
@@ -34,7 +37,9 @@ async def send_message(text_query: str) -> None:
     public_agent_card = await get_agent_card()
 
     print("🔄 Initializing a non-streaming client")
-    config = ClientConfig(streaming=False)
+    config = ClientConfig(
+        streaming=False, httpx_client=httpx.AsyncClient(timeout=TIMEOUT)
+    )
     client = await create_client(agent=public_agent_card, client_config=config)
 
     message = new_text_message(text_query, role=Role.ROLE_USER)
